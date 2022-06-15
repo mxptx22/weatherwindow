@@ -1,0 +1,461 @@
+:root {
+  --seeThruHeight: 90%;
+  --seeThruWidth: 90vw;
+  --sidenavWidth: calc(45px + 12%);
+  --headerHeight: 3em;
+  --boxShadowLeft: -25px 0px 15px -15px inset grey;
+}
+
+body {
+  background-image: url("backgrounds/d000.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  transition: background-image 2.5s;
+  margin: 0px;
+  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+}
+
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+@media only screen and (min-width: 800px) {
+  .marginTypical {
+    margin-left: 9vw;
+    margin-right: 9vw
+  }
+
+  .marginTable {
+    margin-left: 12vw;
+    margin-right: 12vw
+  }
+
+  .majorFont {
+    font-size: 140% !important
+  }
+
+  .mediumFont {
+    font-size: 120% !important
+  }
+
+  .typicalFont {
+    font-size: 2rem !important
+  }
+
+  .bolderFont {
+    font-weight: 500 !important
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #searchLocationArea {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 6vw;
+  }
+  #remainingSettingsSection {
+    border-left: 1px solid grey;
+    padding-left: 2vw;
+  }
+}
+
+#seeThruWindow {
+  width: var(--seeThruWidth);
+  height: var(--seeThruHeight);
+  border: solid lightgray 0;
+  position: fixed;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, -0%);
+  overflow: hidden;
+  background-color: white;
+  opacity: 0.75;
+  display: inline;
+  border-radius: 10px;
+}
+
+.sidenav {
+  height: 100%;
+  background-color: lightgray, 0.3;
+  width: var(--sidenavWidth);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  box-shadow: var(--boxShadowLeft);
+}
+
+.main {
+  height: calc(var(--seeThruHeight));
+  overflow: auto;
+  margin-left: calc(var(--sidenavWidth));
+  padding: 10px;
+}
+
+#firstImpressionContainer {
+  min-height: 90vh;
+}
+
+#next12hTitle {
+  margin-top:0 !important;
+}
+
+.headerApp {
+  background-color: grey;
+  height: var(--headerHeight);
+  color: white;
+  padding: 1vh 1.5vh 1.7vh 1.5vh;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: var(--boxShadowLeft);
+  width: calc(100%-1.5vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settingsItem {
+  background-color: white;
+  align-items: center;
+  font-size: 100%;
+  margin: -1vh -1.5vh 1vh -1.5vh;
+  box-shadow: var(--boxShadowLeft);
+}
+
+.settingsButton {
+  align-items: center;
+  background-color: inherit;
+  color: white;
+  font-size: 120%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.miniText {
+  font-size: max(70%, 10px);
+  font-variant: small-caps;
+  box-shadow: var(--boxShadowLeft);
+  font-weight: 300;
+}
+
+.appText {
+  font-size: calc(0.75 * var(--headerHeight));
+  font-weight: 900;
+  box-shadow: var(--boxShadowLeft);
+}
+
+#infoSpace {
+  text-align: center;
+  color: grey;
+}
+
+.locationsEntries {
+  height: calc(100% - var(--headerHeight) - 4vh);
+  /*100% minus header minus margin top of locationsEntries */
+  bottom: 0;
+  top: calc(var(--headerHeight));
+  margin-top: 4vh;
+  width: calc(var(--sidenavWidth));
+  overflow: auto;
+  position: fixed;
+}
+
+.locationsEntries::-webkit-scrollbar {
+  display: none;
+}
+
+#columnMenuMyLocations {
+  min-height: 8vh;
+}
+
+.menuMyLocationsButton {
+  border: none;
+  width: 100%;
+  padding: min(2.55vh, 40px) 0 0 min(4.15vh, 10px);
+  font-size: 250%;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: #313232;
+  font-weight: 500;
+  border-left: solid 0vw #313232;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--boxShadowLeft);
+}
+
+.menuMyLocationsButton:hover {
+  color: white;
+  background-color: grey;
+  opacity: 0.7;
+}
+
+.menuMyLocationsButton:active {
+  color: white;
+  background-color: grey;
+  opacity: 0.7;
+}
+
+#checkedLocationContainer {
+  display: flex !important;
+  justify-content: center;
+
+}
+
+#checkedLocationNameBar {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 200%;
+  background-color: grey;
+  color: white;
+  margin: auto;
+  margin-top: 5vh;
+  padding: 0.5em 0.75em;
+  overflow: hidden;
+  font-weight: 400;
+}
+
+.textUnderlineEffect {
+  text-align: center;
+  font-size: 100%;
+  background-color: grey;
+  color: white;
+  margin: auto;
+  margin-bottom: max(1vw, 10px);
+  height: clamp(8px, 1vw, 18px);
+  border-radius: 10px;
+}
+
+
+.currentConditionsTitle {
+  margin-top: 5vh;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 200%;
+}
+
+#tempAmplitudeBar {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 175%;
+  margin-bottom: 3vh;
+  color: gray;
+}
+
+#lowTempAmp {
+  display: inline-block;
+  margin-left: 2vw;
+}
+
+#highTempAmp {
+  display: inline-block;
+  margin-right: 2vw;
+}
+
+.settingsHeading {
+  text-align: center;
+  font-size: 200%;
+  font-weight: inherit;
+  margin-top: 1em;
+  font-weight: 400;
+}
+
+p {
+  text-align: justify;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  background-size: 145%;
+  background-position-y: top;
+  background-position-x: center;
+}
+
+#settingsSearch {
+  background-image: url('icons/search.svg');
+}
+
+#settingsAllSettings {
+  background-image: url('icons/settings.svg');
+}
+
+#settingsDataSources {
+  background-image: url('icons/source.svg');
+}
+
+.sectionTitle {
+  margin-top: 4vw;
+  margin-bottom: 3.5vw;
+  text-align: center;
+  font-size: 200%;
+  font-weight: 400;
+}
+
+.temperatureText {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 625%;
+  font-weight: bolder;
+}
+
+.confirmButton {
+  border: none;
+  display: inline-block;
+  margin-bottom: 20px;
+  vertical-align: bottom;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  background-color: gray;
+  font-size: 100%;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0.3em 0.5em;
+}
+
+.confirmButton:hover {
+  opacity: 0.8;
+}
+
+.noMargin {
+  margin-top: 1.2vw;
+  margin-bottom: 0 !important;
+  border-bottom: solid 0.5vh lightgrey;
+  color: white;
+  opacity: 0.9;
+  margin-right: 1.5vh;
+  margin-left: 0;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.3em 0.6em !important;
+  height: unset !important;
+  visibility: unset !important;
+  font-size: 100% !important;
+
+}
+
+
+#hourlyForecastSection {
+  display: block;
+  text-align: center;
+  columns: 4 auto;
+  column-width: 12vw;
+  column-rule: 1px solid grey;
+}
+
+.hourly {
+  font-size: 120%;
+}
+
+.timehour {
+  font-weight: bold;
+}
+
+.timetemp {
+  margin-bottom: 1vw;
+}
+
+.symbolhr {
+  height: 3em;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  margin-top: 1vw;
+
+}
+
+.symboldy {
+  width: calc(2.4 * clamp(16px, 3vw, 45px));
+  height: calc(2.4 * clamp(16px, 3vw, 45px));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  margin-bottom: max(-3px, -1.8vh);
+}
+
+#detailedCurrentSection {
+  columns: 2 24vw;
+  column-gap: 1vw;
+  margin-bottom: 2vw;
+}
+
+.detailCard {
+  background-color: gainsboro;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1vw;
+  border-radius: 2vw;
+}
+
+.detailMajor {
+  font-size: 150%;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-bottom: 1px solid grey;
+}
+
+
+.dailyForecastDay {
+  font-weight: 500;
+  font-size: 1.25em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dailyForecastLow {
+  text-align: right;
+}
+
+.dailyForecastHigh {
+  text-align: right;
+}
+
+.inputBar {
+  padding: 8px;
+  display: inline-block;
+  font-size: 110%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 95%;
+  margin-bottom: 1vh;
+}
+
+#searchLocationArea {
+  margin: 0 2vh 2vh 2vh;
+}
+
+#output {
+  display: grid;
+  grid-template-columns: 30% 15% 30% 15%;
+  grid-column-gap: 1.8vw;
+  grid-auto-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+  text-overflow: ellipsis;
+}
+
+.locationEntryText {
+  font-size: 100%;
+}
+
+.locationNameHighlight {
+  font-weight: 500;
+}
