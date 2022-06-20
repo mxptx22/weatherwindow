@@ -4,9 +4,12 @@ let checkedLocationName = null;
 let speedUnit = null;
 let tempUnit = null;
 
+ 
+
 function scrolldivpizdunia() {
-    var elem = document.getElementById("pizdunia");
-    elem.scrollIntoView({behavior: 'smooth', block: 'center'});
+    var elem = document.getElementById("settingsContainer");
+    elem.scrollIntoView({behavior: 'smooth', block: 'start'});
+    document.getElementById("sidenavView").style.height = "100vh";
 }
 
 function startingSetup() {
@@ -73,7 +76,7 @@ function addToMyLocations(examinedLocation) {
         myLocations.push(examinedLocation);
         showMyLocations();
         saveMyLocations();
-        scrolldivpizdunia();
+        // scrolldivpizdunia();
         openLocationsSettings(null, 0);
     };
 
@@ -131,9 +134,9 @@ function returnQueryLocation() {
 
             var idButton = document.createElement('button');
             idButton.type = 'button';
-            idButton.className = "confirmButton";
+            idButton.className = "confirmButton addLocationButton";
             idButton.id = "selectionButton" + foundLocations[i].id;
-            idButton.innerText = "Add";
+            idButton.innerText = "+";
             idButton.value = foundLocations[i].id;
             idButton.setAttribute("onclick", "addToMyLocations({'Locc Name': document.getElementById('locationName." + i + "').innerText, 'Locc Id': document.getElementById('selectionButton" + foundLocations[i].id + "').value});");
             document.getElementById("output").appendChild(idButton);
@@ -215,15 +218,16 @@ function openSettings() {
     document.getElementById('locationsEntriesView').style.width = "99%";
     document.getElementById('sidenavView').style.transition = "width 2s ease-in-out";
     document.getElementById('locationsEntriesView').style.transition = "width 2s ease-in-out";
-    document.getElementById('sidenavView').style.transitionDelay = "1s";
-    document.getElementById('locationsEntriesView').style.transitionDelay = "1s";
+    document.getElementById('sidenavView').style.transitionDelay = "0s";
+    document.getElementById('locationsEntriesView').style.transitionDelay = "0s";
     setTimeout(function () {
         document.getElementById("searchLocationView").style.display = "block";
-        scrolldivpizdunia(); // scroll to arrows and center
-    }, 3000);
+        showLocationSearchPanel();
+        // scrolldivpizdunia(); // scroll to arrows and center
+    }, 2000);
     setTimeout(function () {
-        openLocationsSettings("1s padding-top ease-out, 1s padding-bottom ease-out, 1s font-size ease-out", 500);
-    }, 1500);
+        openLocationsSettings("height 0.5s", 500);
+    }, 500);
 }
 
 
@@ -345,10 +349,11 @@ function openLocationsSettings(transitionEffect, timeOutValue) {
             allMyLocationsButtonsMoveUp.className = "settingsButtonType";
             allMyLocationsButtonsMoveUp.setAttribute("href", "#");
             allMyLocationsButtonsMoveUp.setAttribute("onclick", "moveUpLocation(" + allMyLocationsButtonsValues + ")");
-            allMyLocationsButtonsMoveUp.innerText = "▲";
+            allMyLocationsButtonsMoveUp.style.backgroundImage = "url('icons/up-icon.svg')";
             allMyLocationsButtonsMoveUp.style.padding = "0";
             allMyLocationsButtonsMoveUp.style.height = "0";
-            allMyLocationsButtonsMoveUp.style.fontSize = "0";
+            allMyLocationsButtonsMoveUp.style.width = "0";
+            // allMyLocationsButtonsMoveUp.style.fontSize = "0";
             // allMyLocationsButtonsMoveUp.style.visibility = "hidden";
         
 
@@ -359,10 +364,11 @@ function openLocationsSettings(transitionEffect, timeOutValue) {
             allMyLocationsButtonsDelete.className = "settingsButtonType";
             allMyLocationsButtonsDelete.setAttribute("href", "#");
             allMyLocationsButtonsDelete.setAttribute("onclick", "deleteLocation(" + allMyLocationsButtonsValues + ")");
-            allMyLocationsButtonsDelete.innerText = "X";
+            allMyLocationsButtonsDelete.style.backgroundImage = "url('icons/close-icon.svg')";
             allMyLocationsButtonsDelete.style.padding = "0";
             allMyLocationsButtonsDelete.style.height = "0";
-            allMyLocationsButtonsDelete.style.fontSize = "0";
+            allMyLocationsButtonsDelete.style.width = "0";
+            // allMyLocationsButtonsDelete.style.fontSize = "0";
             // allMyLocationsButtonsDelete.style.visibility = "hidden";
 
         // move down buttons 
@@ -372,10 +378,11 @@ function openLocationsSettings(transitionEffect, timeOutValue) {
             allMyLocationsButtonsMoveDown.className = "settingsButtonType";
             allMyLocationsButtonsMoveDown.setAttribute("href", "#");
             allMyLocationsButtonsMoveDown.setAttribute("onclick", "moveDownLocation(" + allMyLocationsButtonsValues + ")");
-            allMyLocationsButtonsMoveDown.innerText = "▼";
+            allMyLocationsButtonsMoveDown.style.backgroundImage = "url('icons/down-icon.svg')";
             allMyLocationsButtonsMoveDown.style.padding = "0";
             allMyLocationsButtonsMoveDown.style.height = "0";
-            allMyLocationsButtonsMoveDown.style.fontSize = "0";
+            allMyLocationsButtonsMoveDown.style.width = "0";
+            // allMyLocationsButtonsMoveDown.style.fontSize = "0";
             // allMyLocationsButtonsMoveDown.style.visibility = "hidden";
 
         parentDiv.insertBefore(allMyLocationsButtonsMoveDown, arrayButtonIdentifiers);
@@ -385,7 +392,7 @@ function openLocationsSettings(transitionEffect, timeOutValue) {
         setTimeout(function () {
             for (let i = 0; i < document.getElementsByClassName('settingsButtonType').length; i++) {
             document.getElementsByClassName('settingsButtonType')[i].style.transition = transitionEffect;
-            document.getElementsByClassName('settingsButtonType')[i].className = "settingsButtonType confirmButton noMargin";
+            document.getElementsByClassName('settingsButtonType')[i].className = "settingsButtonType noMargin";
             }
 
         }, timeOutValue);
@@ -487,3 +494,24 @@ function moveDownLocation(locationToMoveDown) {
         }
     }
 };
+
+function showLocationSearchPanel() {
+    document.getElementById("settingsSearch").style.display = "none";
+    document.getElementById("settingsAllSettings").style.display = "none";
+    document.getElementById("settingsDataSources").style.display = "none";
+    document.getElementById("settingsSearch").style.display = "block";
+}
+
+function showSettingsPanel() {
+    document.getElementById("settingsSearch").style.display = "none";
+    document.getElementById("settingsAllSettings").style.display = "none";
+    document.getElementById("settingsDataSources").style.display = "none";
+    document.getElementById("settingsAllSettings").style.display = "block";
+}
+
+function showDataSourcesPanel() {
+    document.getElementById("settingsSearch").style.display = "none";
+    document.getElementById("settingsAllSettings").style.display = "none";
+    document.getElementById("settingsDataSources").style.display = "none";
+    document.getElementById("settingsDataSources").style.display = "block";
+}

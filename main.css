@@ -1,5 +1,5 @@
 :root {
-  --seeThruHeight: 90%;
+  --seeThruHeight: 90vh;
   --seeThruWidth: 90vw;
   --sidenavWidth: calc(45px + 12%);
   --headerHeight: 3em;
@@ -14,9 +14,35 @@ body {
   background-size: cover;
   transition: background-image 2.5s;
   margin: 0px;
-  font-size: 1rem;
+  font-size: 1.2em;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 300;
+  color: #313232;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f132; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.8); 
+}
+
+.draggable {
+  height:100vh;
+  -webkit-app-region: drag;
+  z-index: -1;
+}
+
+.not-draggable {
+  -webkit-app-region: no-drag;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 @viewport {
@@ -24,11 +50,17 @@ body {
   zoom: 1.0;
 }
 
+@media only screen and (min-width: 500px) {
+  #searchLocationView {margin: 2rem}
+}
+
 @media only screen and (min-width: 800px) {
   .marginTypical {
     margin-left: 9vw;
     margin-right: 9vw
   }
+
+  #searchLocationView {margin: 4rem}
 
   .marginTable {
     margin-left: 12vw;
@@ -44,24 +76,38 @@ body {
   }
 
   .typicalFont {
-    font-size: 2rem !important
+    font-size: 1.7rem !important
   }
 
   .bolderFont {
     font-weight: 500 !important
   }
+
+  #firstImpressionContainer {
+    min-height: 90vh;
+  }
 }
 
-@media only screen and (min-width: 1200px) {
-  #searchLocationArea {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    column-gap: 6vw;
-  }
-  #remainingSettingsSection {
-    border-left: 1px solid grey;
-    padding-left: 2vw;
-  }
+@media only screen and (min-width: 1100px) {
+#settingsSelection {
+  flex-direction: column;
+  justify-content: flex-start !important;
+  align-content: end;
+  margin-bottom:0 !important;
+  border-bottom: 0 !important;
+}
+#settingsContainer {
+  display: grid !important;
+  grid-template-columns: min-content 1fr;
+  column-gap: 3em;
+}
+
+.settingSelectionButton {
+  width:100% !important;
+  align-self: center;
+  border-radius: 10px !important;
+}
+#searchLocationView {margin: 6rem}
 }
 
 #seeThruWindow {
@@ -73,15 +119,14 @@ body {
   bottom: 0%;
   transform: translate(-50%, -0%);
   overflow: hidden;
-  background-color: white;
-  opacity: 0.75;
+  background-image: url("backgrounds/opaqueback.png");
   display: inline;
   border-radius: 10px;
 }
 
 .sidenav {
   height: 100%;
-  background-color: lightgray, 0.3;
+  background-image: rgb(232, 229, 229);
   width: var(--sidenavWidth);
   position: fixed;
   z-index: 1;
@@ -92,14 +137,11 @@ body {
 }
 
 .main {
-  height: calc(var(--seeThruHeight));
+  height: 100%;
   overflow: auto;
   margin-left: calc(var(--sidenavWidth));
   padding: 10px;
-}
-
-#firstImpressionContainer {
-  min-height: 90vh;
+  /* background-image: url("backgrounds/opaqueback.png"); */
 }
 
 #next12hTitle {
@@ -107,13 +149,12 @@ body {
 }
 
 .headerApp {
-  background-color: grey;
+  background-color: #0000005c;
   height: var(--headerHeight);
   color: white;
   padding: 1vh 1.5vh 1.7vh 1.5vh;
   text-align: center;
   overflow: hidden;
-  box-shadow: var(--boxShadowLeft);
   width: calc(100%-1.5vh);
   display: flex;
   align-items: center;
@@ -145,15 +186,19 @@ body {
   font-weight: 300;
 }
 
+.deMargin {
+  margin: 0 !important;
+  margin-bottom: max(1vw, 10px) !important;
+}
+
 .appText {
   font-size: calc(0.75 * var(--headerHeight));
   font-weight: 900;
-  box-shadow: var(--boxShadowLeft);
 }
 
 #infoSpace {
   text-align: center;
-  color: grey;
+  color: hsl(0, 0%, 50%);
 }
 
 .locationsEntries {
@@ -172,13 +217,14 @@ body {
 }
 
 #columnMenuMyLocations {
-  min-height: 8vh;
+  min-height: 2vh;
 }
 
 .menuMyLocationsButton {
   border: none;
   width: 100%;
   padding: min(2.55vh, 40px) 0 0 min(4.15vh, 10px);
+  margin-top: 1vh;
   font-size: 250%;
   vertical-align: middle;
   overflow: hidden;
@@ -190,18 +236,28 @@ body {
   cursor: pointer;
   white-space: nowrap;
   box-shadow: var(--boxShadowLeft);
+  background-color:rgba(0, 20, 20, 0.1);
+  box-shadow: inset 0px 0px 14px -10px;
 }
 
 .menuMyLocationsButton:hover {
-  color: white;
-  background-color: grey;
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0000005c;
 }
 
 .menuMyLocationsButton:active {
   color: white;
-  background-color: grey;
-  opacity: 0.7;
+  background-color: #0000005c;
+}
+
+#firstImpressionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top:3vh;
+  padding-bottom:6vh;
+  box-sizing: border-box;
 }
 
 #checkedLocationContainer {
@@ -214,24 +270,27 @@ body {
   text-align: center;
   text-transform: capitalize;
   font-size: 200%;
-  background-color: grey;
-  color: white;
+  background-color:rgba(0, 20, 20, 0.1);
+  color: #313232;
   margin: auto;
   margin-top: 5vh;
   padding: 0.5em 0.75em;
   overflow: hidden;
   font-weight: 400;
+  border-radius:6px;
+  box-shadow: inset 0px 0px 14px -10px;
 }
 
 .textUnderlineEffect {
   text-align: center;
   font-size: 100%;
-  background-color: grey;
-  color: white;
+  background-color: hsla(0, 0%, 50%, 0.4);
   margin: auto;
   margin-bottom: max(1vw, 10px);
   height: clamp(8px, 1vw, 18px);
   border-radius: 10px;
+  /* box-shadow: inset 0px 0px 2px 0px; */
+  box-shadow: inset 0px 0px 14px -10px;
 }
 
 
@@ -261,35 +320,25 @@ body {
 }
 
 .settingsHeading {
-  text-align: center;
-  font-size: 200%;
-  font-weight: inherit;
-  margin-top: 1em;
+  text-align: left;
+  font-size: 190%;
   font-weight: 400;
+  margin-bottom: 0.5em;
 }
 
 p {
   text-align: justify;
 }
 
-.icon {
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  background-size: 145%;
-  background-position-y: top;
-  background-position-x: center;
-}
-
-#settingsSearch {
+#settingsSearchIcon {
   background-image: url('icons/search.svg');
 }
 
-#settingsAllSettings {
+#settingsAllSettingsIcon {
   background-image: url('icons/settings.svg');
 }
 
-#settingsDataSources {
+#settingsDataSourcesIcon {
   background-image: url('icons/source.svg');
 }
 
@@ -304,45 +353,64 @@ p {
 .temperatureText {
   text-align: center;
   text-transform: capitalize;
-  font-size: 625%;
+  font-size:min(25vw,20vh);
   font-weight: bolder;
 }
 
 .confirmButton {
   border: none;
   display: inline-block;
-  margin-bottom: 20px;
   vertical-align: bottom;
   overflow: hidden;
   text-decoration: none;
-  color: white;
-  background-color: gray;
   font-size: 100%;
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
-  padding: 0.3em 0.5em;
+  background-color: rgba(0, 20, 20, 0.15);
+  border-bottom: solid 0.5vh lightgrey;
+  color: #313232;
+  opacity: 0.9;
+  padding: 0.25em 0.7em !important;
+  border-radius: 6px;
+  box-shadow: inset 0px 0px 3px 0px;
 }
 
 .confirmButton:hover {
   opacity: 0.8;
+  border-bottom: solid 0.5vh #313232;
+  box-shadow: inset 0px 3px 4px 0px;
 }
 
 .noMargin {
-  margin-top: 1.2vw;
-  margin-bottom: 0 !important;
+  margin-top: 1.5rem;
+  margin-bottom: -1vh !important;
   border-bottom: solid 0.5vh lightgrey;
-  color: white;
   opacity: 0.9;
   margin-right: 1.5vh;
   margin-left: 0;
-  font-weight: bold;
-  text-align: center;
-  padding: 0.3em 0.6em !important;
-  height: unset !important;
-  visibility: unset !important;
-  font-size: 100% !important;
+  padding: 0 !important;
+  height: 3rem !important;
+  width: 3rem !important;
+  background-size: 2.25rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* visibility: unset !important; */
+  /* font-size: 100% !important; */
+  border-radius:5px 5px 0px 0px;
+  background-color:rgba(0, 20, 20, 0.1);
+  display: inline-block;
+  vertical-align: bottom;
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  /* box-shadow: inset 0px 0px 3px 0px; */
+  box-shadow: inset 0px 0px 14px -10px;
+}
 
+.noMargin:hover {
+  box-shadow: inset 0px 3px 4px 0px;
+  border-bottom: solid 0.5vh #313232;
 }
 
 
@@ -393,21 +461,26 @@ p {
 }
 
 .detailCard {
-  background-color: gainsboro;
+  background-color:rgba(0, 20, 20, 0.1);
   display: inline-block;
   width: 100%;
   text-align: center;
   margin-bottom: 1vw;
-  border-radius: 2vw;
+  border-radius: 6px;
+  box-shadow: inset 0px 0px 14px -10px;
 }
 
 .detailMajor {
-  font-size: 150%;
+font-size: 140%;
 }
 
 table {
   table-layout: fixed;
   width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
   border-bottom: 1px solid grey;
 }
 
@@ -434,8 +507,12 @@ table {
   display: block;
   border: none;
   border-bottom: 1px solid #ccc;
-  width: 95%;
+  width: 100%;
   margin-bottom: 1vh;
+  background-color: rgba(0, 20, 20, 0.1);
+  border-radius:6px;
+  box-shadow: inset 0px 0px 14px -10px;
+  box-sizing:border-box;
 }
 
 #searchLocationArea {
@@ -445,7 +522,7 @@ table {
 #output {
   display: grid;
   grid-template-columns: 30% 15% 30% 15%;
-  grid-column-gap: 1.8vw;
+  grid-column-gap: 2vw;
   grid-auto-rows: 1fr;
   justify-content: center;
   align-items: center;
@@ -459,3 +536,68 @@ table {
 .locationNameHighlight {
   font-weight: 500;
 }
+
+#settingsRenderer {
+}
+
+#settingsSelection {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-bottom:2em;
+  border-bottom: 1px solid gray;
+}
+
+.settingSelectionButton {
+  background-color: rgba(0, 20, 20, 0.1);
+  border-top: solid 0.5vh lightgrey;
+  color: #313232;
+  opacity: 0.9;
+  text-align: -webkit-center;
+  padding: 0.25em 0.25em !important;
+  font-size: 70% !important;
+  border-radius: 10px 10px 0 0 ;
+  width: min(22%,170px);
+  box-shadow: inset 0px 0px 3px 0px;
+}
+
+.settingSelectionButton:hover {
+  opacity: 0.8;
+  border-top: solid 0.5vh #313232;
+  cursor:pointer;
+  box-shadow: inset 0px 8px 20px -7px;
+}
+
+.settingSelectionButton:target {
+  opacity: 0.8;
+  border-top: solid 0.5vh #313232;
+  cursor:pointer;
+  box-shadow: inset 0px 8px 20px -7px;
+}
+
+.icon {
+  width: 3em;
+  height: 3em;
+  display: block;
+  background-size: 140%;
+  background-position-y: top;
+  background-position-x: center;
+  margin-bottom: 0.6em;
+}
+  #settingsSearch {
+    display: none;
+  }
+  
+  #settingsAllSettings {
+    display: none;
+  }
+  
+  #settingsDataSources {
+    display: none;
+  }
+
+  #settingsContainer {
+    display: flex;
+    flex-direction: column;
+  }

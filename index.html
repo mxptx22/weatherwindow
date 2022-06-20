@@ -11,8 +11,8 @@
  </head>
 
  <body class="typicalFont">
-
-   <div id="seeThruWindow">
+<div class="draggable">
+   <div id="seeThruWindow" class="not-draggable">
 
      <div class="sidenav" id="sidenavView">
        <div class="headerApp" id="headerAppView">
@@ -20,26 +20,108 @@
          </div>
        </div>
        <div class="locationsEntries" id="locationsEntriesView">
-         <p style="font-size:70%;text-align:center;color:grey;margin:0 0 0 0">Data from Foreca</p>
+         <p style="font-size:75%;text-align:center;color:grey;margin:0 0 0 0">Data from Foreca</p>
          <div id="columnMenuMyLocations"></div>
          <br>
          <div id="pizdunia" class="textUnderlineEffect arrowLimit" style="width:max(66px,9.9%)"> </div>
          <div class="textUnderlineEffect arrowLimit" style="width:max(44px,6.6%)"> </div>
          <div class="textUnderlineEffect arrowLimit" style="width:max(22px,3.3%);margin-bottom:2em"> </div>
          <div id="searchLocationView">
-           <div id="searchLocationArea">
-             <div id="searchLocationSection">
+
+<!-- jazda początek -->
+<div id="settingsContainer">
+  <div id="settingsSelection">
+  <div class="settingSelectionButton" href=# onclick="showLocationSearchPanel()">
+      <div class="icon" id="settingsSearchIcon"></div>
+      Locations
+  </div>
+  <div class="settingSelectionButton" href=# onclick="showSettingsPanel()">
+      <div class="icon" id="settingsAllSettingsIcon"></div>
+      Settings
+  </div>
+  <div class="settingSelectionButton" href=# onclick="showDataSourcesPanel()">
+      <div class="icon" id="settingsDataSourcesIcon"></div>
+      Sources
+  </div>
+  </div>
+  <div id="settingsRenderer">
+      <div id="settingsSearch">
+        <div class="sectionBackgroundArea">
+          <div class="settingsHeading">Search</div>
+          <input type="text" class="inputBar" id="queryLocation" placeholder="City:"></input>
+          <button class="confirmButton" style="font-weight:inherit" type=submit id="queryLocationSubmit"
+            onclick="searchQueryLocation()">Search</button><br>
+          <div id="outputContainer">
+            <div id="output"></div>
+          </div>
+        </div>
+      </div>
+      <div id="settingsAllSettings">
+        <div class="sectionBackgroundArea">
+          <div class="settingsHeading">Settings</div>
+          <table>  
+            <tr>
+              <td>
+            <p style="font-weight:300;color: #505050;text-align: left;">Choose Units:</p>
+              </td>
+              <td style="text-align: right;">
+            <button class="confirmButton" onclick="metricUnits()">Metric</button> <button class=" confirmButton"
+              onclick="imperialUnits()">Imperial</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+            <p style="font-weight:300;color: #505050;text-align: left;">Delete All Locations:</p>
+            </td>
+            <td style="text-align: right;">
+            <button class="confirmButton" onclick="clearMyLocations()">Clear All</button>
+            </td>
+            </tr>
+            <tr>
+              <td>
+                <p style="font-weight:300;color: #505050;text-align: left;">Reload Window:</p>
+              </td>
+              <td style="text-align: right;">
+                <button class="confirmButton" onclick="location.reload()">Reload</button>
+                </td>
+            </tr>
+          </table>
+         </div>
+      </div>
+      <div id="settingsDataSources">
+        <div class="sectionBackgroundArea">
+          <div class="settingsHeading">Sources</div>
+          <h4>Weather Information</h4>
+          <p>We thank <img src="https://f.hubspotusercontent40.net/hubfs/4979099/logo/Foreca_logo_Black.png"
+              alt="Foreca" style="height:0.8em;margin-bottom:-0.06em"> for supplying all weather data used in this
+            application.</p>
+          <h4>Graphical Additions</h4>
+          <p>Icons created by Anarappi from NounProject.com</p>
+          <h4>Author</h4>
+          <p>Created by Michal Piatkowski. 
+            <br>
+            Ⓒ2022</p>
+        </div>
+      </div>
+  </div>
+  </div>
+
+<!-- jazda koniec -->
+
+           <!-- <div id="searchLocationArea"> -->
+             <!-- <div class="sectionBackgroundArea">
                <div class="settingsHeading">
                  <div class="icon" id="settingsSearch"></div> Search
                </div>
-               <input type="text" class="inputBar" id="queryLocation" placeholder="City:"></input>
+               <center><input type="text" class="inputBar" id="queryLocation" placeholder="City:"></input>
                <button class="confirmButton" style="font-weight:inherit" type=submit id="queryLocationSubmit"
-                 onclick="searchQueryLocation()">Search</button><br>
+                 onclick="searchQueryLocation()">Search</button><br></center>
                <div id="outputContainer">
                  <div id="output"></div>
                </div>
-             </div>
-             <div id="remainingSettingsSection">
+             </div> -->
+             <!-- <div id="remainingSettingsSection">
+               <div class="sectionBackgroundArea">
                <div class="settingsHeading">
                  <div class="icon" id="settingsAllSettings"></div> Settings
                </div>
@@ -50,7 +132,8 @@
                  <p style="font-weight:300;color: grey;text-align: center;">Delete All Locations:</p>
                  <button class="confirmButton" onclick="clearMyLocations()">Clear All</button>
                </center>
-
+              </div>
+              <div class="sectionBackgroundArea">
                <div class="settingsHeading">
                  <div class="icon" id="settingsDataSources"></div> Data Sources
                </div>
@@ -59,7 +142,8 @@
                  application.</p>
                <p>Icons created by Anarappi from NounProject.com</p>
              </div>
-           </div>
+             </div> -->
+           <!-- </div> -->
          </div>
        </div>
 
@@ -73,9 +157,9 @@
        </div>
        <div id="currentConditionsWindow"></div>
        <div id="tempAmplitudeBar"></div>
-       <div class="textUnderlineEffect arrowLimit" style="width:max(33px,9.9%)"> </div>
-       <div class="textUnderlineEffect arrowLimit" style="width:max(22px,6.6%)"> </div>
-       <div class="textUnderlineEffect arrowLimit" style="width:max(11px,3.3%)"> </div>
+       <div class="textUnderlineEffect arrowLimit deMargin" style="width:max(33px,9.9%)"> </div>
+       <div class="textUnderlineEffect arrowLimit deMargin" style="width:max(22px,6.6%)"> </div>
+       <div class="textUnderlineEffect arrowLimit deMargin" style="width:max(11px,3.3%)"> </div>
        <div id="infoSpace"></div>
        </div>
        <div id="next12hTitle" class="sectionTitle"></div>
@@ -97,7 +181,17 @@
      </div>
 
    </div>
-   <script src="index.js"></script>
+  </div>
+   <script src="index.js">
+   </script>
+
+<script type="text/javascript">
+  const { ipcRenderer } = require("electron")
+
+  ipcRenderer.on("ping", function (event, message) {
+      determineSettingsButtonActivity()
+  });
+</script>
 
  </body>
 
